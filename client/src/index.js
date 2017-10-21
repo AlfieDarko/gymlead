@@ -1,0 +1,24 @@
+import "bulma/css/bulma.css";
+import "font-awesome/css/font-awesome.css";
+import "bootstrap/dist/css/bootstrap.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
+
+import "./index.css";
+import App from "./components/App";
+import reducers from "./reducers";
+import axios from "axios";
+import registerServiceWorker from "./registerServiceWorker";
+
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.querySelector("#root")
+);
+registerServiceWorker();
